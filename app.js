@@ -61,7 +61,6 @@ app.get("/comments", async (req, res, next) => {
     .then((response) => {
       const queryKey = Object.keys(req.query)[0];
       const queryValue = req.query[queryKey];
-      console.log(queryKey, queryValue);
       const body = req.query.body;
 
       const comments = response.data;
