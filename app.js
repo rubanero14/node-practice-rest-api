@@ -143,13 +143,13 @@ app.get("/", async (req, res, next) => {
        <ul>
            <li><kbd>GET Top Post</kbd> => <button><a target="_blank" href="/top-posts">/top-posts<a></button> [method: <em>GET</em>]</li>
            <br/>
-           <li><kbd>Filter Comments</kbd> => <button><a target="_blank" href="/top-posts">/top-posts/:searchKeyword<a></button> where :searchKeyword type is string [method: <em>GET</em>]</li>
+           <li><kbd>Filter Comments</kbd> => <button><a target="_blank" href="/top-posts">/top-posts/:searchKeyword<a></button> <samp>where :searchKeyword type is string</samp> [method: <em>GET</em>]</li>
            <br/>
            <li><kbd>GET All Comments</kbd> => <button><a target="_blank" href="/comments">/comments<a></button> [method: <em>GET</em>]</li>
            <br/>
            <li><kbd>GET All Posts</kbd> => <button><a target="_blank" href="/posts">/posts<a></button> [method: <em>GET</em>]</li>
            <br/>
-           <li><kbd>GET Post with Specific ID</kbd> => <button><a target="_blank" href="/posts">/posts/:id<a></button> where :id type is int [method: <em>GET</em>]</li>
+           <li><kbd>GET Post with Specific ID</kbd> => <button><a target="_blank" href="/posts">/posts/:id<a></button> <samp>where :id type is int</samp> [method: <em>GET</em>]</li>
        </ul>
        <button><a target="_blank" href="https://github.com/rubanero14/node-practice-rest-api">Source Code<a></button>
    `);
