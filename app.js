@@ -17,9 +17,79 @@ app.use(
 );
 
 // GET: endpoint for get all comments
+app.get("/top-posts", async (req, res, next) => {
+  await axios
+    .get("https://jsonplaceholder.typicode.com/comments", {
+      headers: {
+        "Accept-Encoding": "application/json",
+      },
+    })
+    .then((response) => {
+      const posts = response.data;
+      const postInfo = [];
+      const postTitle = [];
+      const postBody = [];
+      let numberOfComments = 1;
+
+      for (let i = 0; i <= posts.length; i++) {
+        if (posts[i + 1].id === posts.length) {
+          break;
+        } else {
+          if (posts[i].postId === posts[i + 1].postId) {
+            postTitle.push(posts[i].name);
+            postBody.push(posts[i].body);
+            numberOfComments++;
+          } else {
+            postInfo.push({
+              post_id: posts[i].postId,
+              post_title: postTitle,
+              post_body: postBody,
+              total_number_of_comments: numberOfComments,
+            });
+            postTitle.splice(0, postTitle.length);
+            postBody.splice(0, postBody.length);
+            numberOfComments = 1;
+          }
+        }
+      }
+      res.send(postInfo);
+    })
+    .catch((err) => console.log(err));
+});
+
+// GET: endpoint for get all posts
+app.get("/top-posts/:searchKeyword", async (req, res, next) => {
+  await axios
+    .get("https://jsonplaceholder.typicode.com/posts", {
+      headers: {
+        "Accept-Encoding": "application/json",
+      },
+    })
+    .then((response) => {
+      const searchKeyword = req.params.searchKeyword;
+      const posts = response.data;
+      const postComments = [];
+      let numberOfCommentsFound = 0;
+      let data = "";
+      for (const post of posts) {
+        if (post["body"].includes(searchKeyword)) {
+          postComments.push(post["body"]);
+          numberOfCommentsFound++;
+        }
+        data = {
+          comments_found_array: postComments,
+          number_of_posts_found: numberOfCommentsFound,
+        };
+      }
+      res.send(data);
+    })
+    .catch((err) => console.log(err));
+});
+
+// GET: endpoint for get all comments
 app.get("/comments", async (req, res, next) => {
   const response = await axios
-    .get("https://jsonplaceholder.typicode.com/comments", {
+    .get(`https://jsonplaceholder.typicode.com/comments`, {
       headers: {
         "Accept-Encoding": "application/json",
       },
@@ -32,7 +102,7 @@ app.get("/comments", async (req, res, next) => {
 // GET: endpoint for get all posts
 app.get("/posts", async (req, res, next) => {
   const response = await axios
-    .get("https://jsonplaceholder.typicode.com/posts", {
+    .get(`https://jsonplaceholder.typicode.com/posts`, {
       headers: {
         "Accept-Encoding": "application/json",
       },
@@ -63,6 +133,8 @@ app.get("/", async (req, res, next) => {
        <h1>API Documentation<h1>
        <h3>List of Endpoints</h3>
        <ul>
+           <li><kbd>GET Top Post</kbd> => <code>'/top-posts'</code> [method: <em>GET</em>]</li>
+           <li><kbd>Filter Comments</kbd> => <code>'/top-posts/:searchKeyword'</code> [method: <em>GET</em>]</li>
            <li><kbd>GET All Comments</kbd> => <code>'/comments'</code> [method: <em>GET</em>]</li>
            <li><kbd>GET All Posts</kbd> => <code>'/posts'</code> [method: <em>GET</em>]</li>
            <li><kbd>GET Post with Specific ID</kbd> => <code>'/posts/:id'</code> [method: <em>GET</em>]</li>
