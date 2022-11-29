@@ -18,43 +18,47 @@ app.use(
 
 // GET: endpoint for get all comments
 app.get("/top-posts", async (req, res, next) => {
-  await axios
-    .get("https://jsonplaceholder.typicode.com/comments", {
+  const comments = await axios.get(
+    "https://jsonplaceholder.typicode.com/comments",
+    {
       headers: {
         "Accept-Encoding": "application/json",
       },
-    })
-    .then((response) => {
-      const posts = response.data;
-      const postInfo = [];
-      const postTitle = [];
-      const postBody = [];
-      let numberOfComments = 1;
+    }
+  );
 
-      for (let i = 0; i <= posts.length; i++) {
-        if (posts[i].id === posts.length) {
-          break;
-        } else {
-          if (posts[i].postId === posts[i + 1].postId) {
-            postTitle.push(posts[i].name);
-            postBody.push(posts[i].body);
-            numberOfComments++;
-          } else {
-            postInfo.push({
-              post_id: posts[i].postId,
-              post_title: [...postTitle],
-              post_body: [...postBody],
-              total_number_of_comments: numberOfComments,
-            });
-            postTitle.splice(0, postTitle.length);
-            postBody.splice(0, postBody.length);
-            numberOfComments = 1;
-          }
-        }
+  const posts = await axios.get("https://jsonplaceholder.typicode.com/posts", {
+    headers: {
+      "Accept-Encoding": "application/json",
+    },
+  });
+
+  const topPost = [];
+  let numberOfComments = 0;
+
+  posts.data.map((post) => {
+    comments.data.map((comment) => {
+      if (post.id === comment.postId) {
+        numberOfComments++;
+        topPost.push({
+          post_id: post.id,
+          post_title: post.title,
+          post_body: post.body,
+          total_number_of_comments: numberOfComments,
+        });
+      } else {
+        numberOfComments = 0;
       }
-      res.send(postInfo);
-    })
-    .catch((err) => console.log(err));
+    });
+  });
+
+  const sortedPost = topPost.sort(
+    (a, b) =>
+      parseFloat(b.total_number_of_comments) -
+      parseFloat(a.total_number_of_comments)
+  );
+
+  res.send(sortedPost);
 });
 
 // GET: endpoint for get all posts
