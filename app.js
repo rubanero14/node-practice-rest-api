@@ -133,11 +133,11 @@ app.get("/", async (req, res, next) => {
        <h1>API Documentation<h1>
        <h3>List of Endpoints</h3>
        <ul>
-           <li><kbd>GET Top Post</kbd> => <code>'/top-posts'</code> [method: <em>GET</em>]</li>
-           <li><kbd>Filter Comments</kbd> => <code>'/top-posts/:searchKeyword'</code> [method: <em>GET</em>]</li>
-           <li><kbd>GET All Comments</kbd> => <code>'/comments'</code> [method: <em>GET</em>]</li>
-           <li><kbd>GET All Posts</kbd> => <code>'/posts'</code> [method: <em>GET</em>]</li>
-           <li><kbd>GET Post with Specific ID</kbd> => <code>'/posts/:id'</code> [method: <em>GET</em>]</li>
+           <li><kbd>GET Top Post</kbd> => <code><a href="/top-posts">'/top-posts'<a></code> [method: <em>GET</em>]</li>
+           <li><kbd>Filter Comments</kbd> => <code><a href="/top-posts">'/top-posts/:searchKeyword'<a></code> [method: <em>GET</em>]</li>
+           <li><kbd>GET All Comments</kbd> => <code><a href="/comments">'/comments'<a></code> [method: <em>GET</em>]</li>
+           <li><kbd>GET All Posts</kbd> => <code><a href="/posts">'/posts'<a></code> [method: <em>GET</em>]</li>
+           <li><kbd>GET Post with Specific ID</kbd> => <code><a href="/posts">'/posts/:id'<a></code> [method: <em>GET</em>]</li>
        </ul>
    `);
 });
