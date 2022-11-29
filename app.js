@@ -53,27 +53,47 @@ app.get("/top-posts", async (req, res, next) => {
 });
 
 // GET: endpoint for search and filter logic based on comments content
-app.get("/top-posts/:searchKeyword", async (req, res, next) => {
+app.get("/comments", async (req, res, next) => {
   await axios
-    .get(`${util.BASE_URL}posts`, {
+    .get(`${util.BASE_URL}comments`, {
       headers: util.headerJsonConfig,
     })
     .then((response) => {
-      const searchKeyword = req.params.searchKeyword;
-      const posts = response.data;
-      const postComments = [];
+      const queryKey = Object.keys(req.query)[0];
+      const queryValue = req.query[queryKey];
+      console.log(queryKey, queryValue);
+      const body = req.query.body;
+
+      const comments = response.data;
+      const results = [];
       let numberOfCommentsFound = 0;
       let data = "";
-      for (const post of posts) {
-        if (post["body"].includes(searchKeyword)) {
-          postComments.push(post["body"]);
-          numberOfCommentsFound++;
+
+      const filterComments = (key, value) => {
+        for (const comment of comments) {
+          if (body) {
+            if (comment["body"].includes(body)) {
+              results.push(comment["body"]);
+              numberOfCommentsFound++;
+            }
+          }
+
+          if (value) {
+            if (comment[key] == value) {
+              results.push(comment["body"]);
+              numberOfCommentsFound++;
+            }
+          }
+
+          data = {
+            comments_found_array: results,
+            number_of_posts_found: numberOfCommentsFound,
+          };
         }
-        data = {
-          comments_found_array: postComments,
-          number_of_posts_found: numberOfCommentsFound,
-        };
-      }
+      };
+
+      filterComments(queryKey, queryValue);
+
       res.send(data);
     })
     .catch((err) => console.log(err));
