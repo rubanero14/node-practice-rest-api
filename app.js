@@ -1,8 +1,8 @@
 const PORT = process.env.PORT || 3000;
-const path = require("path");
 const Express = require("express");
 const Cors = require("cors");
 const axios = require("axios");
+const util = require("./util");
 
 // Initiate Express
 const app = Express();
@@ -12,25 +12,16 @@ app.use(Express.urlencoded());
 app.use(Express.json());
 
 // Activate Cors and register to allow multiple CORS origin urls
-app.use(
-  Cors({ origin: ["http://localhost:3000", "https://rubanero14.github.io"] })
-);
+app.use(Cors({ origin: [util.DEV_ORIGIN, util.PROD_ORIGIN] }));
 
-// GET: endpoint for get all comments
+// GET: endpoint to get Top Posts and sorted ascendingly based on number of comments
 app.get("/top-posts", async (req, res, next) => {
-  const comments = await axios.get(
-    "https://jsonplaceholder.typicode.com/comments",
-    {
-      headers: {
-        "Accept-Encoding": "application/json",
-      },
-    }
-  );
+  const comments = await axios.get(`${util.BASE_URL}comments`, {
+    headers: util.headerJsonConfig,
+  });
 
-  const posts = await axios.get("https://jsonplaceholder.typicode.com/posts", {
-    headers: {
-      "Accept-Encoding": "application/json",
-    },
+  const posts = await axios.get(`${util.BASE_URL}posts`, {
+    headers: util.headerJsonConfig,
   });
 
   const topPost = [];
@@ -61,13 +52,11 @@ app.get("/top-posts", async (req, res, next) => {
   res.send(sortedPost);
 });
 
-// GET: endpoint for get all posts
+// GET: endpoint for search and filter logic based on comments content
 app.get("/top-posts/:searchKeyword", async (req, res, next) => {
   await axios
-    .get("https://jsonplaceholder.typicode.com/posts", {
-      headers: {
-        "Accept-Encoding": "application/json",
-      },
+    .get(`${util.BASE_URL}posts`, {
+      headers: util.headerJsonConfig,
     })
     .then((response) => {
       const searchKeyword = req.params.searchKeyword;
@@ -93,10 +82,8 @@ app.get("/top-posts/:searchKeyword", async (req, res, next) => {
 // GET: endpoint for get all comments
 app.get("/comments", async (req, res, next) => {
   const response = await axios
-    .get(`https://jsonplaceholder.typicode.com/comments`, {
-      headers: {
-        "Accept-Encoding": "application/json",
-      },
+    .get(`${util.BASE_URL}comments`, {
+      headers: util.headerJsonConfig,
     })
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -106,10 +93,8 @@ app.get("/comments", async (req, res, next) => {
 // GET: endpoint for get all posts
 app.get("/posts", async (req, res, next) => {
   const response = await axios
-    .get(`https://jsonplaceholder.typicode.com/posts`, {
-      headers: {
-        "Accept-Encoding": "application/json",
-      },
+    .get(`${util.BASE_URL}posts`, {
+      headers: util.headerJsonConfig,
     })
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -120,10 +105,8 @@ app.get("/posts", async (req, res, next) => {
 app.get("/posts/:id", async (req, res, next) => {
   const id = req.params.id;
   const response = await axios
-    .get(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-      headers: {
-        "Accept-Encoding": "application/json",
-      },
+    .get(`${util.BASE_URL}posts/${id}`, {
+      headers: util.headerJsonConfig,
     })
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -147,7 +130,7 @@ app.get("/", async (req, res, next) => {
        <ul>
            <li><kbd>GET Top Post</kbd> => <button><a target="_blank" href="/top-posts">/top-posts<a></button> [method: <em>GET</em>]</li>
            <br/>
-           <li><kbd>Filter Comments</kbd> => <button><a target="_blank" href="/top-posts">/top-posts/:searchKeyword<a></button> <samp>where :searchKeyword type is string</samp> [method: <em>GET</em>]</li>
+           <li><kbd>Search Filter Comments</kbd> => <button><a target="_blank" href="/top-posts">/top-posts/:searchKeyword<a></button> <samp>where :searchKeyword type is string</samp> [method: <em>GET</em>]</li>
            <br/>
            <li><kbd>GET All Comments</kbd> => <button><a target="_blank" href="/comments">/comments<a></button> [method: <em>GET</em>]</li>
            <br/>
