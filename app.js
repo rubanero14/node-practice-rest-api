@@ -32,7 +32,7 @@ app.get("/top-posts", async (req, res, next) => {
       let numberOfComments = 1;
 
       for (let i = 0; i <= posts.length; i++) {
-        if (posts[i + 1].id === posts.length) {
+        if (posts[i].id === posts.length) {
           break;
         } else {
           if (posts[i].postId === posts[i + 1].postId) {
@@ -42,8 +42,8 @@ app.get("/top-posts", async (req, res, next) => {
           } else {
             postInfo.push({
               post_id: posts[i].postId,
-              post_title: postTitle,
-              post_body: postBody,
+              post_title: [...postTitle],
+              post_body: [...postBody],
               total_number_of_comments: numberOfComments,
             });
             postTitle.splice(0, postTitle.length);
