@@ -130,15 +130,28 @@ app.get("/posts/:id", async (req, res, next) => {
 app.get("/", async (req, res, next) => {
   // Example of Simple endpoint documentation
   res.send(`
+       <style>
+        a {
+          text-decoration: none;
+        }
+        button {
+          border-radius: 4px;
+        }
+       </style>
        <h1>API Documentation<h1>
        <h3>List of Endpoints</h3>
        <ul>
-           <li><kbd>GET Top Post</kbd> => <code><a href="/top-posts">'/top-posts'<a></code> [method: <em>GET</em>]</li>
-           <li><kbd>Filter Comments</kbd> => <code><a href="/top-posts">'/top-posts/:searchKeyword'<a></code> [method: <em>GET</em>]</li>
-           <li><kbd>GET All Comments</kbd> => <code><a href="/comments">'/comments'<a></code> [method: <em>GET</em>]</li>
-           <li><kbd>GET All Posts</kbd> => <code><a href="/posts">'/posts'<a></code> [method: <em>GET</em>]</li>
-           <li><kbd>GET Post with Specific ID</kbd> => <code><a href="/posts">'/posts/:id'<a></code> [method: <em>GET</em>]</li>
+           <li><kbd>GET Top Post</kbd> => <button><a href="/top-posts">/top-posts<a></button> [method: <em>GET</em>]</li>
+           <br/>
+           <li><kbd>Filter Comments</kbd> => <button><a href="/top-posts">/top-posts/:searchKeyword<a></button> [method: <em>GET</em>]</li>
+           <br/>
+           <li><kbd>GET All Comments</kbd> => <button><a href="/comments">/comments<a></button> [method: <em>GET</em>]</li>
+           <br/>
+           <li><kbd>GET All Posts</kbd> => <button><a href="/posts">/posts<a></button> [method: <em>GET</em>]</li>
+           <br/>
+           <li><kbd>GET Post with Specific ID</kbd> => <button><a href="/posts">/posts/:id<a></button> [method: <em>GET</em>]</li>
        </ul>
+       <button><a target="_blank" href="https://github.com/rubanero14/node-practice-rest-api">Source Code<a></button>
    `);
 });
 
