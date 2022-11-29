@@ -53,7 +53,7 @@ app.get("/top-posts", async (req, res, next) => {
 });
 
 // GET: endpoint for search and filter logic based on comments content
-app.get("/comments", async (req, res, next) => {
+app.get("/filtered-comments", async (req, res, next) => {
   await axios
     .get(`${util.BASE_URL}comments`, {
       headers: util.headerJsonConfig,
@@ -149,7 +149,7 @@ app.get("/", async (req, res, next) => {
        <ul>
            <li><kbd>GET Top Post</kbd> => <button><a target="_blank" href="/top-posts">/top-posts<a></button> [method: <em>GET</em>]</li>
            <br/>
-           <li><kbd>Search Filter Comments</kbd> => <button><a target="_blank" href="/top-posts">/top-posts/:searchKeyword<a></button> <samp>where :searchKeyword type is string</samp> [method: <em>GET</em>]</li>
+           <li><kbd>GET Search or Filter for Comments</kbd> => <button><a target="_blank" href="/filtered-comments?body=ipsum">/filtered-comments?body=ipsum<a></button> <samp>This endpoint uses req.query, filter using id, post_id, body, name, or email</samp> [method: <em>GET</em>]</li>
            <br/>
            <li><kbd>GET All Comments</kbd> => <button><a target="_blank" href="/comments">/comments<a></button> [method: <em>GET</em>]</li>
            <br/>
