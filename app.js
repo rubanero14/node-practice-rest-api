@@ -2,8 +2,10 @@ const PORT = process.env.PORT || 3000;
 const Express = require("express");
 const Cors = require("cors");
 const axios = require("axios");
+
 const util = require("./util");
 const homeView = require("./View");
+const errorView = require("./View/error");
 
 // Initiate Express
 const app = Express();
@@ -83,6 +85,10 @@ app.get("/filtered-comments", async (req, res, next) => {
               results.push(comment["body"]);
               numberOfCommentsFound++;
             }
+          }
+
+          if (key === undefined || value === undefined) {
+            res.send(errorView);
           }
 
           data = {
