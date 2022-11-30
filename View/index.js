@@ -1,28 +1,28 @@
 const homeView = `
     <style>
-    a {
-    text-decoration: none;
-    display: block;
-    margin: 0 5px;
-    }
-    samp, a {
-    font-size: 13px;
-    }
-    button a {
-    font-size: 13px;
-    border-radius: 4px;
-    }
-    .container {
-    width: auto;
-    }
-    @media (max-width: 768px) {
+        a {
+            text-decoration: none;
+            display: block;
+            margin: 0 5px;
+        }
+        samp, a {
+            font-size: 13px;
+        }
         button a {
-            font-size: 20px;
+            font-size: 13px;
+            border-radius: 4px;
         }
         .container {
-            width: 100%;
+            width: auto;
         }
-    }
+        @media (max-width: 768px) {
+            button a {
+                font-size: 20px;
+            }
+            .container {
+                width: 100%;
+            }
+        }
     </style>
     <div class="container">
     <h1>API Documentation<h1>
