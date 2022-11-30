@@ -23,6 +23,6 @@ router.get("/posts/:id", appController.getSpecificPost);
 router.get("/", appController.getDocumentation);
 
 // Catch All middleware for other undefined middlewares under Not Found category
-router.get("*", appController.pageNotFound);
+router.use("*", appController.pageNotFound);
 
 module.exports = router;
