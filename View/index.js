@@ -16,12 +16,12 @@ const homeView = `
     width: auto;
     }
     @media (max-width: 768px) {
-    button a {
-        font-size: 20px;
-    }
-    .container {
-        width: 100%;
-    }
+        button a {
+            font-size: 20px;
+        }
+        .container {
+            width: 100%;
+        }
     }
     </style>
     <div class="container">
