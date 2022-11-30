@@ -140,7 +140,11 @@ app.get("/", async (req, res, next) => {
         a {
           text-decoration: none;
         }
-        button {
+        samp, a {
+          font-size: 13px;
+        }
+        button a {
+          font-size: 18px;
           border-radius: 4px;
         }
        </style>
