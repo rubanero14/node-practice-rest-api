@@ -1,8 +1,9 @@
 const axios = require("axios");
 
 const Constants = require("../util");
-const homeView = require("../view-components");
-const errorView = require("../view-components/error");
+const docsHomeView = require("../view-components");
+const filterErrorView = require("../view-components/filterError");
+const pageNotFoundView = require("../view-components/pageNotFound");
 
 exports.getTopPosts = async (req, res, next) => {
   try {
@@ -61,21 +62,21 @@ exports.getFilteredComment = async (req, res, next) => {
         let data = "";
 
         const filterComments = (key, value) => {
-          for (const comment of comments) {
-            if (key !== "postId" && key !== "id") {
-              if (comment[key].toLowerCase().includes(value.toLowerCase())) {
-                results.push(comment["body"]);
-                numberOfCommentsFound++;
+          if (key === undefined || value === undefined) {
+            res.send(filterErrorView);
+          } else {
+            for (const comment of comments) {
+              if (key !== "postId" && key !== "id") {
+                if (comment[key].toLowerCase().includes(value.toLowerCase())) {
+                  results.push(comment["body"]);
+                  numberOfCommentsFound++;
+                }
+              } else {
+                if (comment[key] == value) {
+                  results.push(comment["body"]);
+                  numberOfCommentsFound++;
+                }
               }
-            } else {
-              if (comment[key] == value) {
-                results.push(comment["body"]);
-                numberOfCommentsFound++;
-              }
-            }
-
-            if (key === undefined || value === undefined) {
-              res.send(errorView);
             }
 
             data = {
@@ -141,7 +142,7 @@ exports.getSpecificPost = async (req, res, next) => {
 exports.getDocumentation = async (req, res, next) => {
   try {
     // Example of simple endpoint documentation
-    res.send(homeView);
+    res.send(docsHomeView);
   } catch (err) {
     res.status(503).send(err);
   }
@@ -149,7 +150,7 @@ exports.getDocumentation = async (req, res, next) => {
 
 exports.pageNotFound = (req, res) => {
   try {
-    res.status(404).send("404: Page not found");
+    res.status(404).send(pageNotFoundView);
   } catch (err) {
     res.status(503).send(err);
   }
