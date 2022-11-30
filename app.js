@@ -1,12 +1,9 @@
 const PORT = process.env.PORT || 3000;
 const Express = require("express");
 const Cors = require("cors");
-const axios = require("axios");
 
 const routes = require("./router");
 const util = require("./util");
-const homeView = require("./view");
-const errorView = require("./view/error");
 
 // Initiate Express
 const app = Express();
