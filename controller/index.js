@@ -64,24 +64,12 @@ exports.getFilteredComment = async (req, res, next) => {
           for (const comment of comments) {
             if (key !== "postId" && key !== "id") {
               if (comment[key].toLowerCase().includes(value.toLowerCase())) {
-                results.push({
-                  postId: comment["postId"],
-                  id: comment["id"],
-                  name: comment["name"],
-                  email: comment["email"],
-                  comments: comment["body"],
-                });
+                results.push(comment["body"]);
                 numberOfCommentsFound++;
               }
             } else {
               if (comment[key] == value) {
-                results.push({
-                  postId: comment["postId"],
-                  id: comment["id"],
-                  name: comment["name"],
-                  email: comment["email"],
-                  comments: comment["body"],
-                });
+                results.push(comment["body"]);
                 numberOfCommentsFound++;
               }
             }
