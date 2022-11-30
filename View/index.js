@@ -39,7 +39,7 @@ const homeView = `
             <li><kbd>GET Post with Specific ID</kbd> => <samp>where :id type is int</samp> [method: <em>GET</em>] => <button><a target="_blank" href="/posts">/posts/:id<a></button></li>
         </ul>
         <button><a target="_blank" href="https://github.com/rubanero14/node-practice-rest-api">Source Code<a></button>
-    </div>>
+    </div>
 `;
 
 module.exports = homeView;
