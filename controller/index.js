@@ -68,7 +68,6 @@ exports.getFilteredComment = async (req, res, next) => {
                 numberOfCommentsFound++;
               }
             } else {
-              console.log("Lower");
               if (comment[key] == value) {
                 results.push(comment["body"]);
                 numberOfCommentsFound++;
