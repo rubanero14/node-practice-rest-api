@@ -1,16 +1,16 @@
 const axios = require("axios");
 
-const util = require("../util");
+const Constants = require("../util");
 const homeView = require("../view-components");
 const errorView = require("../view-components/error");
 
 exports.getTopPosts = async (req, res, next) => {
-  const comments = await axios.get(`${util.BASE_URL}comments`, {
-    headers: util.headerJsonConfig,
+  const comments = await axios.get(`${Constants.BASE_URL}comments`, {
+    headers: Constants.headerJsonConfig,
   });
 
-  const posts = await axios.get(`${util.BASE_URL}posts`, {
-    headers: util.headerJsonConfig,
+  const posts = await axios.get(`${Constants.BASE_URL}posts`, {
+    headers: Constants.headerJsonConfig,
   });
 
   const topPost = [];
@@ -43,8 +43,8 @@ exports.getTopPosts = async (req, res, next) => {
 
 exports.getFilteredComment = async (req, res, next) => {
   await axios
-    .get(`${util.BASE_URL}comments`, {
-      headers: util.headerJsonConfig,
+    .get(`${Constants.BASE_URL}comments`, {
+      headers: Constants.headerJsonConfig,
     })
     .then((response) => {
       const queryKey = Object.keys(req.query)[0];
@@ -92,8 +92,8 @@ exports.getFilteredComment = async (req, res, next) => {
 
 exports.getAllComments = async (req, res, next) => {
   const response = await axios
-    .get(`${util.BASE_URL}comments`, {
-      headers: util.headerJsonConfig,
+    .get(`${Constants.BASE_URL}comments`, {
+      headers: Constants.headerJsonConfig,
     })
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -102,8 +102,8 @@ exports.getAllComments = async (req, res, next) => {
 
 exports.getAllPosts = async (req, res, next) => {
   const response = await axios
-    .get(`${util.BASE_URL}posts`, {
-      headers: util.headerJsonConfig,
+    .get(`${Constants.BASE_URL}posts`, {
+      headers: Constants.headerJsonConfig,
     })
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -113,8 +113,8 @@ exports.getAllPosts = async (req, res, next) => {
 exports.getSpecificPost = async (req, res, next) => {
   const id = req.params.id;
   const response = await axios
-    .get(`${util.BASE_URL}posts/${id}`, {
-      headers: util.headerJsonConfig,
+    .get(`${Constants.BASE_URL}posts/${id}`, {
+      headers: Constants.headerJsonConfig,
     })
     .then((response) => response.data)
     .catch((err) => console.log(err));

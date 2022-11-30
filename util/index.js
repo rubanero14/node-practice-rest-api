@@ -1,4 +1,4 @@
-class Util {
+class Constants {
   static BASE_URL = "https://jsonplaceholder.typicode.com/";
 
   static PROD_ORIGIN = "https://rubanero14.github.io";
@@ -10,4 +10,4 @@ class Util {
   };
 }
 
-module.exports = Util;
+module.exports = Constants;
