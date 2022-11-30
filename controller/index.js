@@ -54,7 +54,6 @@ exports.getFilteredComment = async (req, res, next) => {
       .then((response) => {
         const queryKey = Object.keys(req.query)[0];
         const queryValue = req.query[queryKey];
-        const body = req.query.body;
 
         const comments = response.data;
         const results = [];
@@ -63,16 +62,26 @@ exports.getFilteredComment = async (req, res, next) => {
 
         const filterComments = (key, value) => {
           for (const comment of comments) {
-            if (body) {
-              if (comment["body"].includes(body)) {
-                results.push(comment["body"]);
+            if (key !== "postId" && key !== "id") {
+              if (comment[key].toLowerCase().includes(value.toLowerCase())) {
+                results.push({
+                  postId: comment["postId"],
+                  id: comment["id"],
+                  name: comment["name"],
+                  email: comment["email"],
+                  comments: comment["body"],
+                });
                 numberOfCommentsFound++;
               }
-            }
-
-            if (value) {
+            } else {
               if (comment[key] == value) {
-                results.push(comment["body"]);
+                results.push({
+                  postId: comment["postId"],
+                  id: comment["id"],
+                  name: comment["name"],
+                  email: comment["email"],
+                  comments: comment["body"],
+                });
                 numberOfCommentsFound++;
               }
             }
@@ -83,7 +92,7 @@ exports.getFilteredComment = async (req, res, next) => {
 
             data = {
               comments_found_array: results,
-              number_of_posts_found: numberOfCommentsFound,
+              number_of_comments_found: numberOfCommentsFound,
             };
           }
         };
