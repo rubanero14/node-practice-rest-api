@@ -1,19 +1,17 @@
 const Constants = require("../util");
 
 const styles = `
-    span {
-        display: flex;
+    h1, h3 {
+        display: flow-root;
     }
-    pre {
-        margin: 0 5px;
+    span {
         color: red;
     }
 `;
 
 const contents = `
-    <span>Hey send some req queries on the url, ie: <pre>?body=ipsum</pre> or <pre>?postId=3</pre> to filter or search comments with word ipsum or postId or other variables</span>
-    <br />
-    Please refer documentation for more details on <a href="/">here<a>
+    <h1><span>Attention</span>&nbsp;: req.query such as '<span>?body=ipsum</span>' or '<span>?postId=3</span>' required on the url to filter or search comments</h1>
+    <h3>Please refer documentation for more details on <a href="/">here<a>!</h3>
 `;
 
 const errorView = Constants.htmlMarkup("Error", styles, contents);
