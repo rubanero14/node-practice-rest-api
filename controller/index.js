@@ -1,8 +1,8 @@
 const axios = require("axios");
 
 const util = require("../util");
-const homeView = require("../view");
-const errorView = require("../view/error");
+const homeView = require("../view-components");
+const errorView = require("../view-components/error");
 
 exports.getTopPosts = async (req, res, next) => {
   const comments = await axios.get(`${util.BASE_URL}comments`, {
