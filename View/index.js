@@ -30,7 +30,7 @@ const homeView = `
     <ul>
         <li><kbd>GET Top Post</kbd> => <button><a target="_blank" href="/top-posts">/top-posts<a></button> [method: <em>GET</em>]</li>
         <br/>
-        <li><kbd>GET Search or Filter for Comments</kbd> => <button><a target="_blank" href="/filtered-comments?body=ipsum">/filtered-comments?body=ipsum<a></button> <samp>This endpoint uses req.query, filter using id, post_id, body, name, or email</samp> [method: <em>GET</em>]</li>
+        <li><kbd>GET Search or Filter for Comments</kbd> => <button><a target="_blank" href="/filtered-comments?body=ipsum">/filtered-comments?body=ipsum<a></button> <samp>This endpoint uses req.query, filter using id, postId, body, name, or email</samp> [method: <em>GET</em>]</li>
         <br/>
         <li><kbd>GET All Comments</kbd> => <button><a target="_blank" href="/comments">/comments<a></button> [method: <em>GET</em>]</li>
         <br/>
