@@ -15,14 +15,8 @@ app.use(Express.json());
 // Activate Cors and register to allow multiple CORS origin urls
 app.use(Cors({ origin: [util.DEV_ORIGIN, util.PROD_ORIGIN] }));
 
-// GET: endpoint to get Top Posts and sorted ascendingly based on number of comments
+// Routes
 app.use(routes);
-
-// Catch All middleware for other undefined middlewares under Not Found category
-app.use((err, req, res, send) => {
-  // respond page not found
-  res.status(404).send("404: Page not found");
-});
 
 // Initiate Server
 app.listen(PORT, () => {

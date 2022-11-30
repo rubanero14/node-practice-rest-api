@@ -125,3 +125,7 @@ exports.getDocumentation = async (req, res, next) => {
   // Example of simple endpoint documentation
   res.send(homeView);
 };
+
+exports.pageNotFound = (req, res) => {
+  res.status(404).send("404: Page not found");
+};
