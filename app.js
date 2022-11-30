@@ -3,7 +3,7 @@ const Express = require("express");
 const Cors = require("cors");
 const axios = require("axios");
 const util = require("./util");
-const homeView = require("./View/view");
+const homeView = require("./View");
 
 // Initiate Express
 const app = Express();
