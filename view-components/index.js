@@ -27,7 +27,7 @@ const styles = `
 
     .container {
         width: auto;
-        padding: 30px;
+        padding: 20px;
     }
 
     .source-code {
