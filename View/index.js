@@ -28,15 +28,15 @@ const homeView = `
     <h1>API Documentation<h1>
     <h3>List of Endpoints</h3>
     <ul>
-        <li><kbd>GET Top Post</kbd> => <button><a target="_blank" href="/top-posts">/top-posts<a></button> [method: <em>GET</em>]</li>
+        <li><kbd>GET Top Post</kbd> => <samp>[method: <em>GET</em>]</samp> => <button><a target="_blank" href="/top-posts">/top-posts<a></button></li>
         <br/>
-        <li><kbd>GET Search or Filter for Comments</kbd> => <button><a target="_blank" href="/filtered-comments?body=ipsum">/filtered-comments?body=ipsum<a></button> <samp>This endpoint uses req.query, filter using id, postId, body, name, or email</samp> [method: <em>GET</em>]</li>
+        <li><kbd>GET Search or Filter for Comments</kbd> => <samp>This endpoint uses req.query, filter using id, postId, body, name, or email</samp> [method: <em>GET</em>] => <button><a target="_blank" href="/filtered-comments?body=ipsum">/filtered-comments?body=ipsum<a></button></li>
         <br/>
-        <li><kbd>GET All Comments</kbd> => <button><a target="_blank" href="/comments">/comments<a></button> [method: <em>GET</em>]</li>
+        <li><kbd>GET All Comments</kbd> => [method: <em>GET</em>] => <button><a target="_blank" href="/comments">/comments<a></button></li>
         <br/>
-        <li><kbd>GET All Posts</kbd> => <button><a target="_blank" href="/posts">/posts<a></button> [method: <em>GET</em>]</li>
+        <li><kbd>GET All Posts</kbd> => [method: <em>GET</em>] => <button><a target="_blank" href="/posts">/posts<a></button></li>
         <br/>
-        <li><kbd>GET Post with Specific ID</kbd> => <button><a target="_blank" href="/posts">/posts/:id<a></button> <samp>where :id type is int</samp> [method: <em>GET</em>]</li>
+        <li><kbd>GET Post with Specific ID</kbd> => <samp>where :id type is int</samp> [method: <em>GET</em>] => <button><a target="_blank" href="/posts">/posts/:id<a></button></li>
     </ul>
     <button><a target="_blank" href="https://github.com/rubanero14/node-practice-rest-api">Source Code<a></button>
     </div>
