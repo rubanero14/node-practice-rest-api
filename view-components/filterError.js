@@ -14,6 +14,6 @@ const contents = `
     <h3>Please refer documentation for more details on <a href="/">here<a>!</h3>
 `;
 
-const filterError = Constants.htmlMarkup("Error", styles, contents);
+const filterError = Constants.htmlMarkup("Filter Error", styles, contents);
 
 module.exports = filterError;
