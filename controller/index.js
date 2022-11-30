@@ -63,7 +63,6 @@ exports.getFilteredComment = async (req, res, next) => {
         const filterComments = (key, value) => {
           for (const comment of comments) {
             if (key !== "postId" && key !== "id") {
-              console.log("Upper");
               if (comment[key].toLowerCase().includes(value.toLowerCase())) {
                 results.push(comment["body"]);
                 numberOfCommentsFound++;
